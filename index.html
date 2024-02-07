@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="Hangman.js"defer></script>
+    
     <title>Hangman Game</title>
 </head>
 <body>
     <div class="game-modal">
         <div class="content">
-            <img src="images/emoji-smiley.gif" alt="laugh img" style="height: 200px ; width:200px;" />
+            <img src="" alt="laugh img"  />
             <h4>Game Over! <br />You are not as smart as you think you are!</h4>
             <p>The correct word was: <b>rain</b></p>
             <button class="play-again">Play Again</button>
@@ -20,25 +22,17 @@
     <div class="hangman-container">
         <div class="game-info">
             <div class="game-name">Hangman</div>
-            <div class="category">
-                Category: <span></span>
-            </div>
+          
         </div>
         <div class ="game-box">
             <ul class="word-display">
-                <li class="letter">A</li>
-                <li class="letter"></li>
-                <li class="letter"></li>
-                <li class="letter"></li>
-                <li class="letter"></li>
-                <li class="letter"></li>
+                
         </ul>
         </div>
-        <h3 class="hint-text">
-            Hint:
-            <b>lorem ipsum dolor</b>
+        <h3 id="hint-text">
+            Hint:<b></b>
         </h3>
-        <div id="incorrect-letters">Incorrect Letters: </div>
+        <div id="incorrect-letters">Incorrect Letters:<b>0/ 6</b> </div>
         <div class="hangman-image">
             <img src="images/hangman-0.svg" alt="hangman-img" />
             <div class="the-draw"></div>
@@ -58,6 +52,6 @@
 
         </div>
     </div>
-    <script src="Hangman.js"></script>
+    
 </body>
 </html>

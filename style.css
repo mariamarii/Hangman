@@ -1,48 +1,54 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    font-family: 'Open Sans', sans-serif;
     background-color: #CDD193;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
-    padding: 0px 10px;
-    box-sizing: border-box;
 }
 
 .hangman-container {
-    text-align: center;
     background-color: #fff;
-    padding: 20px;
+    padding: 60px 40px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#hangman-image img {
+    max-width: 270px;
+   
 }
 
 h1 {
     color: #333;
+    font-size: 1.8rem;
+    margin-top: 20px;
 }
 
 .game-info {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
-    .game-info .game-name {
+    .game-info .game-name
+    {
         flex: 1;
-        margin-left: 150px;
+        text-align: center;
     }
 
-    .game-info .category {
-        flex: 1;
-        margin-left: 150px;
-        text-align: left;
-    }
-
-        .game-info .category.span {
-            text-transform: capitalize;
-            color: beige;
-            font-weight: bold;
-        }
+      
 
 .word-display {
     display: flex;
@@ -54,10 +60,14 @@ h1 {
 
     .word-display .letter {
         width: 28px;
+        height: 28px;
         border-bottom: 3px solid #000;
+        text-align: center;
+        font-size: 1.2rem;
+        line-height: 28px;
     }
 
-h3 {
+.hint-text {
     text-align: center;
     font-size: 1.1rem;
     font-weight: 500;
@@ -65,30 +75,100 @@ h3 {
 
 #incorrect-letters {
     color: #ff0000;
-    margin-bottom: 10px;
+    font-size: 1.1rem;
 }
 
 #letter-buttons {
     display: grid;
     grid-template-columns: repeat(13, 1fr);
     gap: 10px;
-    outline: none;
+    width: 100%;
+    max-width: 350px; /* Limit width for better layout on larger screens */
+}
+#letter-buttons button[disabled]{
+    opacity:0.6;
+    pointer-events:none;
+}
+button {
+   
+    padding:6px 3px;
+    background-color: #2F5233;
+    color: #fff;
     border: none;
-    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+   /*resize:both;*/
 }
 
+    button:hover {
+        background-color: #4e7d53;
+    }
+
+.hangman-image {
+    height: 324px;
+    width: 100%;
+    max-width: 300px; /* Limit width for better layout on larger screens */
+    background-color: #f8f8f8;
+    border-radius: 10px;
+   
+}
+
+/* Add animation for hangman parts */
+.the-hang,
+.the-rope,
+.the-man {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Animation for incorrect guesses */
+.incorrect-guess {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Game over modal */
 .game-modal {
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    display: none;
+    opacity:0;
+    pointer-events:none;
+    z-index:999;
+    display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
+    transition:opacity 0.4s ease;
 }
-
+    .game-modal.show {
+        opacity: 1;
+        pointer-events: auto;
+     
+    }
     .game-modal .content {
         background: #fff;
         max-width: 200px;
@@ -99,11 +179,11 @@ h3 {
     }
 
     .game-modal h4 {
-        font-size: 1.20rem;
+        font-size: 1.2rem;
     }
 
     .game-modal p {
-        font-size: 1.15rem;
+        font-size: 1.1rem;
         margin: 15px 0 30px;
         font-weight: 500;
     }
@@ -112,82 +192,3 @@ h3 {
             color: grey;
             font-weight: 600;
         }
-
-    .game-modal button {
-        padding: 12px 23px;
-        background-color: #2F5233;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-        .game-modal button:hover {
-            background-color: #2F5233;
-        }
-
-.hangman-image {
-    height: 324px;
-    background-color: #f8f8f8;
-    margin: 20px auto;
-    border-radius: 10px;
-}
-
-button {
-    padding: 12px 23px;
-    background-color: #2F5233;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-    button:hover {
-        background-color: #2F5233;
-    }
-/* For small screens */
-@media screen and (max-width: 600px) {
-    .game-info {
-        flex-direction: column;
-        align-items: center;
-    }
-
-        .game-info .game-name,
-        .game-info .category {
-            margin-left: 0;
-            text-align: center;
-        }
-
-    .hangman-container {
-        padding: 10px;
-    }
-
-    .word-display .letter {
-        width: 20px;
-    }
-
-    .game-modal .content {
-        max-width: 80%;
-    }
-
-    .hangman-image {
-        height: auto;
-    }
-}
-
-/* For medium screens */
-@media screen and (min-width: 601px) and (max-width: 900px) {
-    .game-info .game-name,
-    .game-info .category {
-        margin-left: 50px;
-    }
-}
-
-/* For large screens */
-@media screen and (min-width: 901px) {
-    .game-info .game-name,
-    .game-info .category {
-        margin-left: 150px;
-    }
-}
-

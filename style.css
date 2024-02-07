@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #CDD193;
+    background-color: #5E376D;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,7 +43,7 @@ h1 {
 }
 
     .game-info .game-name
-    {
+    {   font-size:2rem;
         flex: 1;
         text-align: center;
     }
@@ -90,15 +90,14 @@ h1 {
     pointer-events:none;
 }
 button {
-   
-    padding:6px 3px;
-    background-color: #2F5233;
+    padding: 6px 3px;
+    background-color: #424651;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-   /*resize:both;*/
+    /*resize:both;*/
 }
 
     button:hover {
